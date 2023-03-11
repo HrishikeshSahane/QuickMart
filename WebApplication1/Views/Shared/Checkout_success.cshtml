@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "Checkout_success";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+
+<h1 style="text-align:center">Your Order has been placed</h1>
+<h3 style="text-align:center">Total Price to Pay</h3>
+<div style="border-color:greenyellow">
+    <h4 style="text-align:center"> @TempData["FinalCost"].ToString()</h4>
+</div>
+
+
+
