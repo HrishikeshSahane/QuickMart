@@ -32,8 +32,8 @@ namespace QuickMartDataAccessLayer.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //optionsBuilder.UseSqlServer("Server=SAHANE-PC\\SQLEXPRESS;Database=QuickMartDB;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False");
-                optionsBuilder.UseSqlServer("Server=tcp:hxs0uxo-mssqlserver.database.windows.net,1433;Initial Catalog=QuickMart;Persist Security Info=False;User ID=hxs0uxo;Password=quickmart@2023;MultipleActiveResultSets=False;TrustServerCertificate=True;Encrypt=False;Connection Timeout=30;");
+                optionsBuilder.UseSqlServer("Server=SAHANE-PC\\SQLEXPRESS;Database=QuickMartDB;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False");
+                //optionsBuilder.UseSqlServer("Server=tcp:hxs0uxo-mssqlserver.database.windows.net,1433;Initial Catalog=QuickMart;Persist Security Info=False;User ID=hxs0uxo;Password=quickmart@2023;MultipleActiveResultSets=False;TrustServerCertificate=True;Encrypt=False;Connection Timeout=30;");
             }
         }
 

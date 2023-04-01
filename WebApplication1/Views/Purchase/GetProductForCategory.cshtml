@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 }
 <br /><br />
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 @using (Html.BeginForm())
 {
     <div class="row form-group">
@@ -57,7 +58,7 @@
                             @Html.DisplayFor(modelItem => item.QuantityAvailable)
                         </td>
                         <td>
-                            @Html.ActionLink("Purchase", "PurchaseProduct", "Purchase", item)
+                            @Html.ActionLink("Purchase", "PurchaseProduct", "Purchase", item)<i style="color:limegreen" class='fas fa-shopping-cart'></i>
 
                         </td>
                     </tr>

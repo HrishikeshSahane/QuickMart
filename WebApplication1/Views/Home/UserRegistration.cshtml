@@ -44,7 +44,19 @@
             <div class="form-group">
                 <input type="submit"  style="border:groove" value="Submit" class="btn btn-default" />
             </div>
-            <div class="text-center" style="color:green">@ViewData["Message"]</div>
+            @{
+                if (ViewData["SuccessMessage"] != null)
+                {
+                    <div class="text-center" style="color:limegreen">@ViewData["SuccessMessage"]</div>
+                }
+                else
+                {
+                    <div class="text-center" style="color:red">@ViewData["FailureMessage"]</div>
+                }
+
+
+            }
+
         </form>
     </div>
 </div>

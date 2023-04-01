@@ -49,9 +49,9 @@
 
                 </div>
         </nav>*@
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color:#0071dc;border-bottom-width:thick">
         <div class="container">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Login">QuickMart</a>
+            <a class="navbar-brand texthovereffect " asp-area="" asp-controller="Customer" asp-action="CustomerHome" style="color:#ffc107">QuickMart</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -59,17 +59,17 @@
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Purchase" asp-action="GetProductForCategory">Search Product</a>
+                        <a class="nav-link text-white hovereffect" asp-area="" asp-controller="Purchase" asp-action="GetProductForCategory">Search Product<i class="fa fa-search" aria-hidden="true"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="GiveFeedBack">Feedback</a>
+                        <a class="nav-link text-white hovereffect" asp-area="" asp-controller="Customer" asp-action="GiveFeedBack">Feedback<i class="fa fa-comment" aria-hidden="true"></i></a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Purchase" asp-action="GetCartDetails" asp-route-UserId="@httpContextaccessor.HttpContext.Request.Query["username"]">Cart</a>
+                        <a class="nav-link text-white hovereffect" asp-area="" asp-controller="Purchase" asp-action="GetCartDetails" asp-route-UserId="@httpContextaccessor.HttpContext.Request.Query["username"]">Cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Logout" asp-route-UserId="@httpContextaccessor.HttpContext.Request.Query["username"]">LogOut</a>
+                        <a class="nav-link text-white hovereffect" asp-area="" asp-controller="Customer" asp-action="Logout" asp-route-UserId="@httpContextaccessor.HttpContext.Request.Query["username"]">LogOut<i class="fa fa-power-off" aria-hidden="true"></i></a>
                     </li>
                 </ul>
             </div>
@@ -82,23 +82,27 @@
         @RenderBody()
         <br />
         <br />
-        <footer style="bottom:0%;position:fixed;width:80%;text-align:center;">
-            <hr />
-            <p>&copy; @DateTime.Now.Year - QuickMart</p>
-        </footer>
     </div>
+        <footer class="border-top footer text-muted" style="background-color:#ffc107">
+        <div class="container" style="text-align:center;color:#0071dc">
+                &copy; 2023 - QuickMart - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+    
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.min.js"></script>
         <script src="~/lib/bootstrap/dist/css/bootstrap.css"></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     </environment>
     <environment exclude="Development">
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="~/js/site.min.js"></script>
         <script src="~/lib/bootstrap/dist/css/bootstrap.css"></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     </environment>
 
     @RenderSection("Scripts", required: false)

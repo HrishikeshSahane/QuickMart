@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "WebApplication1": {
+    "QuickMartCoreMVCApp": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

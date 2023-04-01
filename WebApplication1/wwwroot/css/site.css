@@ -69,3 +69,15 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.hovereffect:hover {
+
+    background-color: #ffc107;
+    border-radius: 10px;
+    transform: scale(1.1)
+}
+
+.texthovereffect:hover {
+    /*color: #ffc107;*/
+    transform:scale(1.1)
+}

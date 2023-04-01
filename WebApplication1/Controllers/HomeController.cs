@@ -94,6 +94,7 @@ namespace QuickMartCoreMVCApp.Controllers
             if (roleId == 1)
             {
                 //HttpContext.Session.SetString("username",username);
+                HttpContext.Session.SetString("Admin_userId", userId);
                 return Redirect("/Admin/AdminHome?username=" + username);
             }
             else if (roleId == 2)
@@ -125,32 +126,22 @@ namespace QuickMartCoreMVCApp.Controllers
 
         {
             bool status;
-            string connection = "Data Source=DELL\\SQLEXPRESS;Initial Catalog=QuickKartDB;Integrated Security=True";
+            status = repObj.RegisterUser(usermodel.EmailId, usermodel.UserPassword, usermodel.Gender, usermodel.DateOfBirth, usermodel.Address);
 
-            using (SqlConnection sqlconn = new SqlConnection(connection))
+            if (status)
             {
-                string sqlquery = "insert into Users(EmailId,UserPassword,RoleId,Gender,DateOfBirth,Address) values('" + usermodel.EmailId + "','" + usermodel.UserPassword + "','" + 2 + "','" + usermodel.Gender + "','" + usermodel.DateOfBirth + "','" + usermodel.Address + "')";
-
-                using (SqlCommand sqlcomm = new SqlCommand(sqlquery, sqlconn))
-                {
-                    sqlconn.Open();
-                    sqlcomm.ExecuteNonQuery();
-                    status = true;
-                    ViewData["Message"] = "Succesfully Added";
-
-
-
-                }
-
-                if (status)
-                {
-                    //return RedirectToAction("Login", "Home");
-                    return View("Register");
-                }
-                else
-                    return RedirectToAction("Index", "Home");
+                ViewData["SuccessMessage"] = "Successfully Registered";
+                
 
             }
+            else
+            {
+                ViewData["SuccessMessage"] = null;
+                ViewData["FailureMessage"] = "User Not registered.Please try again by entering correct details";
+            }
+
+            //return RedirectToAction("Index", "Home");
+            return View("Register");
 
         }
 

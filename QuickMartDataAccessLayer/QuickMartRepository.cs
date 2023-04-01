@@ -365,17 +365,22 @@ namespace QuickMartDataAccessLayer
         {
             try
             {
-                Users userObj = new Users();
-                userObj.EmailId = EmailId;
-                userObj.UserPassword = UserPassword;
-                userObj.Gender = Gender;
-                userObj.DateOfBirth = DateOfBirth;
-                userObj.Address = Address;
-                userObj.RoleId = 2;
+                Users user = (from c in _context.Users where c.EmailId.ToLower() == EmailId.ToLower() select c).FirstOrDefault();
+                if(user == null)
+                {
+                    Users userObj = new Users();
+                    userObj.EmailId = EmailId;
+                    userObj.UserPassword = UserPassword;
+                    userObj.Gender = Gender;
+                    userObj.DateOfBirth = DateOfBirth;
+                    userObj.Address = Address;
+                    userObj.RoleId = 2;
 
-                _context.Users.Add(userObj);
-                _context.SaveChanges();
-                return true;
+                    _context.Users.Add(userObj);
+                    _context.SaveChanges();
+                    return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {

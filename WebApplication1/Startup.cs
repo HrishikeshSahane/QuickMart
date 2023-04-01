@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using QuickMartCoreMVCApp.Repository;
 
-namespace WebApplication1
+namespace QuickMartCoreMVCApp
 {
     public class Startup
     {
