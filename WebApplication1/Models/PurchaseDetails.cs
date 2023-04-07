@@ -13,9 +13,9 @@ namespace QuickMartCoreMVCApp.Models
         public long PurchaseId { get; set; }
       
         public string EmailId { get; set; }
-       
+
         public string ProductId { get; set; }
-        
+        [Range(1, int.MaxValue, ErrorMessage = "Please enter a value bigger than {1}")]
         public short QuantityPurchased { get; set; }
         
         public DateTime DateOfPurchase { get; set; }

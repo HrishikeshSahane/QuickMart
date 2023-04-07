@@ -14,12 +14,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="EmailId" class="control-label"></label>
-                <input asp-for="EmailId" class="form-control" />
+                <input asp-for="EmailId" class="form-control"/>
                 <span asp-validation-for="EmailId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="UserPassword" class="control-label"></label>
-                <input asp-for="UserPassword" class="form-control" />
+                <input asp-for="UserPassword" type="password" class="form-control" />
                 <span asp-validation-for="UserPassword" class="text-danger"></span>
             </div>
             
@@ -30,19 +30,19 @@
             </div>
             <div class="form-group">
                 <label asp-for="DateOfBirth" type="datetime" class="control-label"></label>
-                <input asp-for="DateOfBirth" type="datetime" class="form-control" />
+                <input asp-for="DateOfBirth" type="datetime" class="form-control"/>
                 <span asp-validation-for="DateOfBirth" type="datetime" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
+                <input asp-for="Address" class="form-control"/>
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             
             <br/>
             <br/> 
             <div class="form-group">
-                <input type="submit"  style="border:groove" value="Submit" class="btn btn-default" />
+                <input type="submit" id="btn-submit" style="border:groove" value="Submit" class="btn btn-default" />
             </div>
             @{
                 if (ViewData["SuccessMessage"] != null)
@@ -62,8 +62,9 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-area="" asp-controller="Home" asp-action="Login">Back to Home Page</a>
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -34,14 +34,19 @@
             @RenderBody()
         </main>
     </div>
-
+    <br/>
+    <br/>
+    <div style="text-align:center">
+        <a>Forgot Password? <br />Please Contact: +9 (999)-(999)-(9999) or Mail at: quickmart@customercare.com </a>
+    </div>
     <footer class="border-top footer text-muted" style="background-color:#ffc107">
         <div class="container" style="text-align:center;color:#0071dc" >
             &copy; 2023 - QuickMart - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    @*<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>*@
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

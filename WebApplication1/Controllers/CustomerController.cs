@@ -54,26 +54,26 @@ namespace QuickMartCoreMVCApp.Controllers
             return RedirectToAction("Login","Home");
         }
 
-        //public IActionResult SaveAddedFeedback(Models.Feedback feedback)
-        //{
-        //    bool status = false;
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            status = repObj.AddFeedback(_mapper.Map<Feedback>(feedback));
-        //            if (status)
-        //                return RedirectToAction("Index","Home");
-        //            else
-        //                return View("Error");
-        //        }
-        //        catch (Exception)
-        //        {
-        //            return View("Error");
-        //        }
-        //    }
-        //    return View("GiveFeedback", feedback);
-        //}
+        public IActionResult SaveAddedFeedback(Models.Feedback feedback)
+        {
+            bool status = false;
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    status = repObj.AddFeedback(_mapper.Map<Feedback>(feedback));
+                    if (status)
+                        return RedirectToAction("Index", "Home");
+                    else
+                        return View("Error");
+                }
+                catch (Exception)
+                {
+                    return View("Error");
+                }
+            }
+            return View("GiveFeedback", feedback);
+        }
 
     }
 }

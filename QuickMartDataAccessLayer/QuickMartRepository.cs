@@ -380,21 +380,21 @@ namespace QuickMartDataAccessLayer
         }
 
 
-        //public bool AddFeedback(Feedback feedObj)
-        //{
-        //    try
-        //    {
-        //        _context.Feedback.Add(feedObj);
-        //        _context.SaveChanges();
-        //        return true;
-        //    }
+        public bool AddFeedback(Feedback feedObj)
+        {
+            try
+            {
+                _context.Feedback.Add(feedObj);
+                _context.SaveChanges();
+                return true;
+            }
 
-        //    catch (Exception ex)
-        //    {
-        //        return false;
-        //    }
+            catch (Exception ex)
+            {
+                return false;
+            }
 
-        //}
+        }
 
         public byte? ValidateCredentials(string userId, string password)
         {

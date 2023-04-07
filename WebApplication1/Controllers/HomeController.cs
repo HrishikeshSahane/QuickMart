@@ -137,7 +137,7 @@ namespace QuickMartCoreMVCApp.Controllers
             else
             {
                 ViewData["SuccessMessage"] = null;
-                ViewData["FailureMessage"] = "User Not registered.Please try again by entering correct details";
+                ViewData["FailureMessage"] = "Incorrect details entered OR user with same e-mailId already registred. Please try again.";
             }
 
             //return RedirectToAction("Index", "Home");
