@@ -41,27 +41,32 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProductId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProductName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CategoryId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Price)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.QuantityAvailable)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Purchase", "PurchaseProduct", "Purchase", item)<i style="color:limegreen" class='fas fa-shopping-cart'></i>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CategoryId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.QuantityAvailable)
+                            </td>
+                            <td>
+                            @if (item.QuantityAvailable > 0)
+                            {
+                                @Html.ActionLink("Purchase", "PurchaseProduct", "Purchase", item)<i style="color:limegreen" class='fas fa-shopping-cart'></i>   
+                            }
 
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+
+
                 }
             </tbody>
         </table>

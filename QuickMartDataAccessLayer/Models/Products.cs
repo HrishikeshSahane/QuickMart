@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -12,6 +14,8 @@ namespace QuickMartDataAccessLayer.Models
             PurchaseDetails = new HashSet<PurchaseDetails>();
         }
 
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public string ProductId { get; set; }
         public string ProductName { get; set; }
         public byte? CategoryId { get; set; }

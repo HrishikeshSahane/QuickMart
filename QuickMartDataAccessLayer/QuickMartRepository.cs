@@ -19,8 +19,6 @@ namespace QuickMartDataAccessLayer
             _context = context;
         }
 
-
-
         public List<Models.Categories> GetCategories()
         {
             try
@@ -77,7 +75,6 @@ namespace QuickMartDataAccessLayer
         //    }
         //}
 
-
         public bool DeleteCategory(int CategoryId)
         {
             try
@@ -92,8 +89,6 @@ namespace QuickMartDataAccessLayer
                 return false;
             }
         }
-
-
 
         public byte? GetRoleIdByUserId(string userId)
         {
@@ -139,7 +134,6 @@ namespace QuickMartDataAccessLayer
             return "P" + id.ToString();
         }
 
-
         public bool AddProduct(Products product)
         {
             try
@@ -153,8 +147,6 @@ namespace QuickMartDataAccessLayer
                 return false;
             }
         }
-
-
 
         public bool UpdateProduct(Models.Products product)
         {
@@ -210,7 +202,6 @@ namespace QuickMartDataAccessLayer
                 return false;
             }
         }
-
 
         public List<string> FetchTopProducts()
         {
@@ -430,7 +421,7 @@ namespace QuickMartDataAccessLayer
 
         }
 
-        public void AddToCart(PurchaseDetails purchaseDetails)
+        public decimal AddToCart(PurchaseDetails purchaseDetails)
         {
             try
             {
@@ -457,19 +448,20 @@ namespace QuickMartDataAccessLayer
                     cartDetails.Items = jsonString;
                     _context.Cart.Add(cartDetails);
                     _context.SaveChanges();
-                    //return true;
+                    return item.TotalPrice;
                     
                 }
                 else
                 {
-                    List<Items> existingItemsList = JsonConvert.DeserializeObject<List<Items>>(cartObj.Items);
-                    item.ProductName = productDetails.ProductName;
-                    item.QuantityPurchased = purchaseDetails.QuantityPurchased;
-                    item.TotalPrice = purchaseDetails.QuantityPurchased * productDetails.Price;
-                    existingItemsList.Add(item);                    
-                    cartObj.Items = JsonConvert.SerializeObject(existingItemsList);
+                    List<Items> existingItemsList = JsonConvert.DeserializeObject<List<Items>>(cartObj.Items);                   
+                        item.ProductName = productDetails.ProductName;
+                        item.QuantityPurchased = purchaseDetails.QuantityPurchased;
+                        item.TotalPrice = purchaseDetails.QuantityPurchased * productDetails.Price;
+                        existingItemsList.Add(item);      
+                     cartObj.Items = JsonConvert.SerializeObject(existingItemsList);
                     _context.Cart.Update(cartObj);
                     _context.SaveChanges();
+                    return item.TotalPrice;
 
                 }
                 
@@ -477,6 +469,7 @@ namespace QuickMartDataAccessLayer
             catch(Exception ex)
             {
                 string message = ex.Message;
+                return 0;
             }
             //return true;
 
@@ -513,7 +506,7 @@ namespace QuickMartDataAccessLayer
             Cart cartDetails = new Cart();
             List<Items> itemList = new List<Items>();
             cartDetails = (from ctx in _context.Cart where ctx.EmailId.Contains(userId) select ctx).FirstOrDefault();
-            if (cartDetails.Items != null)
+            if (cartDetails != null)
             {
                 itemList = JsonConvert.DeserializeObject<List<Items>>(cartDetails.Items);
                 Items item = itemList.Where(x => x.ProductName == productName).FirstOrDefault();

@@ -48,6 +48,7 @@ namespace QuickMartCoreMVCApp.Controllers
         {
             string productId = repObj.GetNextProductId();
             ViewBag.NextProductId = productId;
+            TempData["NextProductId"] = productId;
             return View();
         }
 
@@ -61,6 +62,7 @@ namespace QuickMartCoreMVCApp.Controllers
             {
                 try
                 {
+                    product.ProductId = TempData["NextProductId"].ToString();
                     status = repObj.AddProduct(_mapper.Map<Products>(product));
                     if (status)
                         return RedirectToAction("ViewProducts");

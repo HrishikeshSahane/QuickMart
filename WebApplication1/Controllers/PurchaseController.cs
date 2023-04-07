@@ -70,7 +70,7 @@ namespace QuickMartCoreMVCApp.Controllers
 
                     status = repObj.PurchaseProduct(_mapper.Map<PurchaseDetails>(purchaseObj));
                     status = true;
-                    repObj.AddToCart(_mapper.Map<PurchaseDetails>(purchaseObj));
+                    decimal totalPrice=repObj.AddToCart(_mapper.Map<PurchaseDetails>(purchaseObj));
 
 
 
@@ -114,6 +114,10 @@ namespace QuickMartCoreMVCApp.Controllers
         {
             string jsonstring = String.Empty;
             decimal FinalCost = 0;
+            if (emailId == null)
+            {
+                emailId= HttpContext.Session.GetString("Customer_userId").ToString();
+            }
             List<Items> itemList = repObj.RemoveItemFromCart(productName, emailId,out jsonstring);
             bool isRemoved = repObj.RemoveFromPurchaseDetails(productName, emailId, qtyPurchased);
             ViewBag.TotalCost = 0;
