@@ -30,6 +30,7 @@ namespace QuickMartDataAccessLayer.Models
         public virtual Roles Role { get; set; }
         public virtual ICollection<PurchaseDetails> PurchaseDetails { get; set; }
         public virtual ICollection<Cart> Carts { get; set; }
+        public virtual ICollection<Feedback> Feedbacks { get; } = new List<Feedback>();
         public virtual ICollection<Order> Orders { get; set; }
     }
 }

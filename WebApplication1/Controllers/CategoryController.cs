@@ -115,7 +115,7 @@ namespace QuickMartCoreMVCApp.Controllers
             {
                 status = repObj.DeleteCategory(categoryId);
                 if (status)
-                    return RedirectToAction("ViewCategories");
+                    return View("SaveDeletion");
                 else
                     return View("Error");
             }

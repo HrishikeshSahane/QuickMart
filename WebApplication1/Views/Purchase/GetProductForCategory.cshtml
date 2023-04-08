@@ -5,6 +5,7 @@
 }
 <br /><br />
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
 @using (Html.BeginForm())
 {
     <div class="row form-group">
@@ -52,7 +53,7 @@
                                 @Html.DisplayFor(modelItem => item.CategoryId)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Price)
+                                <i class="fa fa-inr" aria-hidden="true"></i>@Html.DisplayFor(modelItem => item.Price)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.QuantityAvailable)

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-
+using System.Security.Cryptography.X509Certificates;
 
 namespace QuickMartDataAccessLayer
 {
@@ -79,6 +79,22 @@ namespace QuickMartDataAccessLayer
         {
             try
             {
+                
+                var products = _context.Products.Where(x => x.CategoryId == CategoryId).ToList();
+                if(products.Count > 0)
+                {
+                    foreach (var product in products)
+                    {
+                        var purchaseDetails = _context.PurchaseDetails.Where(x => x.ProductId == product.ProductId).ToList();
+                        if(purchaseDetails.Count > 0) {
+                        _context.PurchaseDetails.RemoveRange(purchaseDetails);
+                        //_context.SaveChanges();
+                        }
+                    }
+                    _context.Products.RemoveRange(products);
+                    //_context.SaveChanges();
+                }
+
                 var categoryToBeDeleted = _context.Categories.Where(x => x.CategoryId == CategoryId).FirstOrDefault();
                 _context.Categories.Remove(categoryToBeDeleted);
                 _context.SaveChanges();
@@ -114,6 +130,53 @@ namespace QuickMartDataAccessLayer
             {
                 return null;
             }
+        }
+
+        public Users GetUserDetails(string emailId)
+        {
+            Users usermodel = new Users();
+            try
+            {
+
+                usermodel = (from ctx in _context.Users where ctx.EmailId.ToLower() == emailId.ToLower() select ctx).FirstOrDefault();
+                return usermodel;
+            }
+            catch(Exception ex)
+            {
+                return usermodel;
+            }
+
+        }
+
+        public Users UpdateProfile(Users usermodel,out bool status)
+        {
+            status = false;
+            try
+            {
+                Users dbUser = _context.Users.Where(x => x.EmailId == usermodel.EmailId).FirstOrDefault();
+                dbUser.Address = usermodel.Address;
+                if (!String.IsNullOrEmpty(usermodel.UserPassword))
+                {
+                    if (usermodel.UserPassword != dbUser.UserPassword)
+                    {
+                        dbUser.UserPassword = usermodel.UserPassword;
+                    }
+
+                }
+                if (dbUser.DateOfBirth != usermodel.DateOfBirth)
+                {
+                    dbUser.DateOfBirth = usermodel.DateOfBirth;
+                }
+
+                _context.Users.Update(dbUser);
+                _context.SaveChanges();
+                status = true;
+                return dbUser;
+            }
+            catch(Exception ex)
+            { return usermodel; }
+
+
         }
         public List<Models.Products> GetProducts()
         {
@@ -384,7 +447,7 @@ namespace QuickMartDataAccessLayer
         {
             try
             {
-                _context.Feedback.Add(feedObj);
+                _context.Feedbacks.Add(feedObj);
                 _context.SaveChanges();
                 return true;
             }

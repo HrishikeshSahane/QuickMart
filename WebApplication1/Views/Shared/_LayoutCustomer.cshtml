@@ -48,6 +48,9 @@
                         <a class="nav-link text-white hovereffect" asp-area="" asp-controller="Purchase" asp-action="GetCartDetails" asp-route-UserId="@httpContextaccessor.HttpContext.Request.Query["username"]">Cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link text-white hovereffect" asp-area="" asp-controller="Home" asp-action="EditProfile" >Edit Profile<i class="fa fa-edit" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link text-white hovereffect" asp-area="" asp-controller="Customer" asp-action="Logout" asp-route-UserId="@httpContextaccessor.HttpContext.Request.Query["username"]">LogOut<i class="fa fa-power-off" aria-hidden="true"></i></a>
                     </li>
                 </ul>
@@ -64,7 +67,7 @@
     </div>
         <footer class="border-top footer text-muted" style="background-color:#ffc107">
         <div class="container" style="text-align:center;color:#0071dc">
-                &copy; 2023 - QuickMart - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                &copy; 2023 - QuickMart
             </div>
         </footer>
     

@@ -22,6 +22,7 @@ namespace QuickMartDataAccessLayer.Models
         public virtual DbSet<CardDetails> CardDetails { get; set; }
         public virtual DbSet<Categories> Categories { get; set; }
         public virtual DbSet<Products> Products { get; set; }
+        public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<PurchaseDetails> PurchaseDetails { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
@@ -220,6 +221,25 @@ namespace QuickMartDataAccessLayer.Models
                             .WithMany(p => p.Orders)
                             .HasForeignKey(d => d.EmailId)
                             .HasConstraintName("fk_OrdersEmailId");
+            });
+            modelBuilder.Entity<Feedback>(entity =>
+            {
+                entity.HasKey(e => e.FeedbackId).HasName("pk_FeedbackId");
+
+                entity.ToTable("Feedback");
+
+                entity.Property(e => e.Comments)
+                    .IsRequired()
+                    .IsUnicode(false);
+                entity.Property(e => e.EmailId)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Email).WithMany(p => p.Feedbacks)
+                    .HasForeignKey(d => d.EmailId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_FeedbackEmailId");
             });
 
             OnModelCreatingPartial(modelBuilder);

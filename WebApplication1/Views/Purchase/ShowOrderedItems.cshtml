@@ -33,7 +33,7 @@
                     @Html.DisplayFor(modelItem => item.QuantityPurchased)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                    <i class="fa fa-inr" aria-hidden="true"></i>@Html.DisplayFor(modelItem => item.TotalPrice)
                 </td>
             </tr>
         }
@@ -53,4 +53,8 @@
     {
         <h5 style="color:forestgreen">Payment received for this order</h5>
     }
+</div>
+<br/>
+<div style="float:left">
+    <a asp-area="" asp-controller="Admin" asp-action="AdminHome">Back to Home Page</a>
 </div>

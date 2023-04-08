@@ -21,8 +21,8 @@ namespace QuickMartCoreMVCApp.Repository
             CreateMap<PurchaseDetails, Models.PurchaseDetails>();
 
 
-            //CreateMap<Models.Feedback, Feedback>();
-            //CreateMap<Feedback, Models.Feedback>();
+            CreateMap<Models.Feedback, Feedback>();
+            CreateMap<Feedback, Models.Feedback>();
 
 
 

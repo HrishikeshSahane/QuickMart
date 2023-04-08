@@ -67,6 +67,11 @@ namespace QuickMartCoreMVCApp.Controllers
             return View();
         }
 
+        public IActionResult Support()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -145,9 +150,32 @@ namespace QuickMartCoreMVCApp.Controllers
 
         }
 
+        public IActionResult EditProfile()
+        {
+            string emailId= HttpContext.Session.GetString("Customer_userId").ToString();
+            Users userObj = repObj.GetUserDetails(emailId);
+            return View(userObj);
+        }
 
-
-
+        [HttpPost]
+        public IActionResult SaveEditedProfile(Users usermodel)
+        {
+            bool status = false;
+            if (String.IsNullOrEmpty(usermodel.EmailId)){
+                usermodel.EmailId = HttpContext.Session.GetString("Customer_userId").ToString();
+            }
+            Users userObj = repObj.UpdateProfile(usermodel,out status);
+            if (status)
+            {
+                ViewData["SuccessMessage"] = "Profile Updated Successfully";
+                return View("EditProfileSuccess");
+            }
+            else
+            {
+                
+                return View("Error");
+            }
+        }
 
         public JsonResult GetCoupons()
         {

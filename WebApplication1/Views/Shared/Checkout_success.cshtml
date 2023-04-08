@@ -7,7 +7,11 @@
 <h1 style="text-align:center">Your Order has been placed</h1>
 <h3 style="text-align:center">Total Price to Pay</h3>
 <div style="border-color:greenyellow">
-    <h4 style="text-align:center"> @TempData["FinalCost"].ToString()</h4>
+    <h4 style="text-align:center"> <i class="fa fa-inr" aria-hidden="true"></i> @TempData["FinalCost"].ToString()</h4>
+</div>
+
+<div style="float:left">
+    <a asp-area="" asp-controller="Customer" asp-action="CustomerHome">Back to Home Page</a>
 </div>
 
 

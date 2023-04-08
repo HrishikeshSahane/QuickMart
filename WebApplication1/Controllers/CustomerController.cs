@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuickMartDataAccessLayer;
 using QuickMartDataAccessLayer.Models;
@@ -45,6 +46,7 @@ namespace QuickMartCoreMVCApp.Controllers
 
         public IActionResult GiveFeedback()
         {
+            ViewData["FeedbackEmail"] = HttpContext.Session.GetString("Customer_userId").ToString();
             return View();
         }
 
@@ -54,6 +56,7 @@ namespace QuickMartCoreMVCApp.Controllers
             return RedirectToAction("Login","Home");
         }
 
+        [HttpPost]
         public IActionResult SaveAddedFeedback(Models.Feedback feedback)
         {
             bool status = false;
@@ -61,9 +64,17 @@ namespace QuickMartCoreMVCApp.Controllers
             {
                 try
                 {
+                    if (string.IsNullOrEmpty(feedback.EmailId)){
+                        feedback.EmailId = HttpContext.Session.GetString("Customer_userId").ToString();
+                    }
                     status = repObj.AddFeedback(_mapper.Map<Feedback>(feedback));
                     if (status)
-                        return RedirectToAction("Index", "Home");
+                    {
+                        ViewData["FeedbackEmail"] = HttpContext.Session.GetString("Customer_userId").ToString();
+                        ViewData["FeedbackSuccess"] = "Thankyou for the feedback!";
+                        return View("GiveFeedback");
+                    }
+
                     else
                         return View("Error");
                 }
@@ -72,7 +83,7 @@ namespace QuickMartCoreMVCApp.Controllers
                     return View("Error");
                 }
             }
-            return View("GiveFeedback", feedback);
+            return View("GiveFeedback");
         }
 
     }

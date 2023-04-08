@@ -39,7 +39,7 @@
                             @Html.DisplayFor(modelItem => item.QuantityPurchased)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.TotalPrice)
+                            <i class="fa fa-inr" aria-hidden="true"></i>@Html.DisplayFor(modelItem => item.TotalPrice)
                         </td>
                         <td>
                             @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
@@ -58,7 +58,7 @@
 
         </table>
         <div style="float:right">
-            <h5>Total Price: @ViewBag.TotalCost</h5>
+            <h5>Total Price:<i class="fa fa-inr" aria-hidden="true"></i> @ViewBag.TotalCost</h5>
         </div>
         <div class="row">
             <div class="col-md-9"></div>

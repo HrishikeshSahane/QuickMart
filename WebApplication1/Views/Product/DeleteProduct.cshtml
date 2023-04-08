@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>DeleteProduct</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+
+<h2 class="text-danger">Are you sure you want to delete this product?</h2>
 <div>
 
     <hr />
@@ -45,7 +45,7 @@
     </dl>
     
     <form asp-action="SaveDeletion" asp-route-productId="@Model.ProductId">
-        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <input type="submit" value="Delete" class="btn btn-danger texthovereffect" /> |
         <a asp-action="ViewProducts">Back to List</a>
     </form>
 </div>
