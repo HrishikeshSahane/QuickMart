@@ -1,0 +1,98 @@
+﻿@model IEnumerable<QuickMartDataAccessLayer.Models.Items>
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextaccessor
+
+@{
+    ViewData["Title"] = "GetCartDetails";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+
+<h1 style="text-align:center">Your Cart</h1>
+
+@{ if (@Model.Any())
+    {
+
+
+        <table class="table-responsive">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.QuantityPurchased)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalPrice)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                 {
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QuantityPurchased)
+                        </td>
+                        <td>
+                            <i class="fa fa-inr" aria-hidden="true"></i>@Html.DisplayFor(modelItem => item.TotalPrice)
+                        </td>
+                        <td>
+                            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+                            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                            @*@Html.ActionLink("RemoveFromCart", "Delete", new { ProductName = item.ProductName, QuantityPurchased = item.QuantityPurchased, TotalPrice = item.TotalPrice })*@
+                        </td>
+                        <td>
+                            <form asp-controller="Purchase" asp-action="RemoveItemFromCart" asp-route-productName="@item.ProductName" asp-route-emailId="@ViewBag.UserID" asp-route-qtyPurchased="@item.QuantityPurchased">
+                                <input type="submit" style="border-color:red;background-color:transparent;color:red" value="Remove from Cart" class="btn btn-default" />
+                            </form>
+                        </td>
+                    </tr>
+                 }
+            </tbody>
+
+
+        </table>
+        <div style="float:right">
+            <h5>Total Price:<i class="fa fa-inr" aria-hidden="true"></i> @ViewBag.TotalCost</h5>
+        </div>
+        <div class="row">
+            <div class="col-md-9"></div>
+            <div class="col-md-1" style="margin-top:100px;float:right">
+                <form asp-controller="Purchase" asp-action="GetProductForCategory">
+                    <input type="submit" style="border-color: cornflowerblue; background-color: transparent; color: cornflowerblue" value="Back To List" class="btn btn-default" />
+                </form>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-1" style="margin-top:100px;float:right">
+
+                @*<form asp-controller="Purchase" asp-action="GetCheckoutDetails">
+                        <input type="submit" style="border-color:forestgreen;background-color:transparent;color:forestgreen" value="Checkout" class="btn btn-default" />
+                    </form>*@
+                @using (Html.BeginForm("GetCheckoutDetails", "Purchase", FormMethod.Post, new { @id = "Form1"}))
+                 {
+                    <input type="submit" style="border-color:forestgreen;background-color:transparent;color:forestgreen" value="Checkout" class="btn btn-default" />
+
+                 }
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            No Items in your cart
+        </div>
+    }
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $("body").on("submit", "#Form1", function () {
+            return confirm("Are you sure you want to checkout?");
+        });
+    </script>
+}

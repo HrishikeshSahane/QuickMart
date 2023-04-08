@@ -1,0 +1,64 @@
+﻿@model QuickMartCoreMVCWeb.Models.Feedback
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextaccessor
+
+@{
+    ViewData["Title"] = "GiveFeedback";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+
+<h2>GiveFeedback</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SaveAddedFeedback">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                    <label asp-for="FeedbackId" class="control-label"></label>
+                    <input asp-for="FeedbackId" class="form-control" />
+                    <span asp-validation-for="FeedbackId" class="text-danger"></span>
+                </div>*@
+
+            <div class="form-group">
+                <label asp-for="EmailId" class="control-label"></label>
+                <input asp-for="EmailId" class="form-control" disabled value="@ViewData["FeedbackEmail"].ToString()" />
+                <span asp-validation-for="EmailId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comments" class="control-label"></label>
+                <input asp-for="Comments" class="form-control" required/>
+                <span asp-validation-for="Comments" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rating" class="control-label"></label>
+                <select asp-for="Rating">
+                    <option selected disabled>-- Give Rating out of 10 --</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+
+                </select>
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" style="background-color:#0071dc;color:gold" class="btn texthovereffect" />
+            </div>
+            @if (ViewData["FeedbackSuccess"] != null)
+            {
+                <div class="text-center" style="color:limegreen;width:120%">@ViewData["FeedbackSuccess"]</div>
+            }
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-area="" asp-controller="Customer" asp-action="CustomerHome">Back to Home Page</a>
+</div>
+

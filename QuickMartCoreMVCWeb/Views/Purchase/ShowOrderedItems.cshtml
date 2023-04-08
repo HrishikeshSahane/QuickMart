@@ -1,0 +1,60 @@
+﻿@model IEnumerable<QuickMartDataAccessLayer.Models.Items>
+
+@{
+    ViewData["Title"] = "ShowOrderedItems";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>ShowOrderedItems</h1>
+
+<table class="table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityPurchased)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuantityPurchased)
+                </td>
+                <td>
+                    <i class="fa fa-inr" aria-hidden="true"></i>@Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+            </tr>
+        }
+
+        
+    </tbody>
+</table>
+
+<div style="float:right">
+    @if (TempData["IsPaymentReceived"].ToString().ToLower() == "false")
+    {
+        <form asp-controller="Purchase" asp-action="PaymentConfirmation">
+            <input type="submit" style="border-color: cornflowerblue; background-color: transparent; color: cornflowerblue" value="Confirm Payment" class="btn btn-default" />
+        </form>
+    }
+    @if (TempData["IsPaymentReceived"].ToString().ToLower() == "true")
+    {
+        <h5 style="color:forestgreen">Payment received for this order</h5>
+    }
+</div>
+<br/>
+<div style="float:left">
+    <a asp-area="" asp-controller="Admin" asp-action="AdminHome">Back to Home Page</a>
+</div>
