@@ -236,7 +236,11 @@ namespace QuickMartDataAccessLayer
             try
             {
                 Models.Products prodObj = _context.Products.Find(productId);
-
+                var purchaseDetails = _context.PurchaseDetails.Where(x => x.ProductId == prodObj.ProductId).ToList();
+                if (purchaseDetails.Count > 0)
+                {
+                    _context.PurchaseDetails.RemoveRange(purchaseDetails);
+                }
                 _context.Products.Remove(prodObj);
                 _context.SaveChanges();
                 return true;
