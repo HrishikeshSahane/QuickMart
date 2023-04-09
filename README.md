@@ -13,3 +13,5 @@ Already created Admin: MeetRoda@yahoo.co.in --> Password: ChristaRocks (Admin Us
 
 3) Page responses might be slow sometimes as website is hosted on Azure Free Resource which has restricted storage and memory.
 
+4) For more instructions regarding use of the application you can refer the PDF document 'Sahane_Hrishikesh_92006993_DLMCSPCSP01_Run Instructions"
+
